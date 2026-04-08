@@ -1,0 +1,19 @@
+# Claude Code local settings
+.claude/
+
+# Runtime project files (populated during actual project work)
+workspace/iterations/I*/
+workspace/src/*
+workspace/deliverables/*
+workspace/prompts/*
+
+# Keep .gitkeep files to preserve folder structure
+!**/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+*.swp
