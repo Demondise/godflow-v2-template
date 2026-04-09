@@ -33,7 +33,11 @@ IF FAIL #3:
 IF PASS or PASS WITH NOTES:
   → Reviewer moves draft/ → approved/
   → Reviewer saves review.md
-  → User Review:
+  → Run tests locally:
+    cd workspace/iterations/I[N]/tests && npm test (or project equivalent)
+    [ ] All tests pass → tell Conductor "Tests passed" → continue to User Review
+    [ ] Tests fail → tell Conductor "Tests failed: [error]" → routes back to Builder
+  → User Review (only after tests pass):
     [ ] Output matches expectation?
     [ ] Output feels complete?
     [ ] Any concerns Reviewer missed?
