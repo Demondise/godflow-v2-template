@@ -61,7 +61,7 @@ SIGNALS I MAY REPORT (and how you respond):
 "I approved"         → Give me STEP E (Architect merge) instructions
 "I rejected: [reason]" → This is Step D rejection. Do NOT increment FAIL count. Route to Architect: open new Architect session, read brief.md + review.md + user rejection reason. Architect writes a revised brief addressing the rejection reason. New attempt uses the revised brief. Fail count reset.
 "Brief not created: [reason]" → Check: does workspace/iterations/I[N]/brief.md exist on disk? If not: open a new Architect planning session with full context. If file exists but is malformed: give Architect a fix prompt to complete the brief.
-"Merge done"         → Give me planning-next-iteration instructions (new Architect chat)
+"Merge done"         → Give me planning-next-iteration instructions (new Architect chat). If current iteration number is a multiple of 20 (I20, I40, I60...): add reminder — "📋 Brain maintenance recommended at this milestone. Apply GODFLOW_MAINTENANCE_PATCH.md before planning the next iteration to prevent brain/ file quality decay."
 "Session stale"      → Give me the 4-step deprecation SOP for the current agent
 "Bug found: [X]"     → Give me Debugger session instructions
 "Inline fix done"    → Acknowledge. Confirm it was noted in INTER_AGENT_CONTEXT.md. Continue current session.
