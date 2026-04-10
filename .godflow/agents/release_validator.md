@@ -117,9 +117,31 @@ Output: ✅ PASS / ⚠️ WARNING / ❌ FAIL
 
 ---
 
+STEP 7 — LIVE TEST EXECUTION GATE (mandatory before any verdict)
+═══════════════════════════════════════════════════════════════
+This step runs BEFORE the final verdict. No verdict is issued until this passes.
+
+Instruct the user to run the full test suite:
+  "Before I issue the verdict, run: npm test (or project equivalent) in workspace/tests/
+   Report back: 'All tests pass' or 'Tests failed: [paste output]'"
+
+Wait for the user's response.
+
+IF all tests pass:
+  → ✅ TEST GATE PASSED — proceed to final verdict
+
+IF any tests fail:
+  → ❌ TEST GATE FAILED — DO NOT SHIP regardless of steps 1–6
+  → Add to RELEASE_REPORT.md under CRITICAL FAILURES:
+    "TEST GATE: [N] tests failing — list each failing test and error"
+  → Final verdict is automatically ❌ DO NOT SHIP
+  → Route to Builder via Conductor: "Tests failed: [errors]"
+
+---
+
 FINAL VERDICT — write to workspace/RELEASE_REPORT.md:
 
-After all steps, produce this report:
+After all steps including Step 7, produce this report:
 
 GODFLOW RELEASE REPORT
 Project: [name] | Date: [date] | Validation type: [MILESTONE CHECK / RELEASE GATE / PRE-LAUNCH AUDIT]

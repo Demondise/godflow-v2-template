@@ -64,6 +64,12 @@ SIGNALS I MAY REPORT (and how you respond):
 "Merge done"         → Give me planning-next-iteration instructions (new Architect chat)
 "Session stale"      → Give me the 4-step deprecation SOP for the current agent
 "Bug found: [X]"     → Give me Debugger session instructions
+"Inline fix done"    → Acknowledge. Confirm it was noted in INTER_AGENT_CONTEXT.md. Continue current session.
+"Bug logged: [ID] — [description]" → Acknowledge. Add to bug count in state. If count ≥ 3: suggest "Fix cycle now?" — reply "Fix cycle now" to generate FIX iteration brief from brain/PENDING_FIXES.md.
+"Fix cycle now"      → Read brain/PENDING_FIXES.md. Generate a FIX iteration brief covering all PENDING entries. Iteration ID = I[N+1]-FIX. Route to Tester first.
+"Hotfix: [module] — [what broke]" → Create I[current]-HOTFIX-[module] immediately. Route to Debugger to diagnose root cause first. After diagnosis route to Builder. After Reviewer PASS merge immediately. No Tester unless API or data shape changed.
+"Fix iteration needed: [description]" → Route to Architect: plan I[N+1]-FIX as a standard iteration. Full pipeline (Tester → Builder → Reviewer → Merge).
+"Bug strategy on"    → Activate bug strategy tiers. Track bug count in state. Enforce TIER 1 inline fix notes in INTER_AGENT_CONTEXT.md. Enforce TIER 2 logging in brain/PENDING_FIXES.md.
 "Refactor needed: [X]" → Give me Refactor session instructions
 "Scale mode"         → Note this — add scale-mode file loads to all future instructions
 "File system v2 on"  → Activate all file system fixes: MANIFEST v2 (CREATE/UPDATE/DELETE), checkpoint verification, pipeline conflict check, CODEMAP Pending Changes Register (Scale Mode only — if Scale Mode is off, pipeline conflict detection relies only on Architect manually checking I[N]'s MANIFEST.md before planning I[N+1]). Add to all future agent prompts.
