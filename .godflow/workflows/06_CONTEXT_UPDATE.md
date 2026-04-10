@@ -41,4 +41,11 @@
       update draft/[file] before Reviewer runs."
     → Give I[N+1] Builder a targeted refresh prompt for the conflicting files only.
 11. If Team Awareness is active: tell Conductor "Update project status" to get the PROJECT_STATUS.md update prompt
-12. Return to Workflow 03 for next iteration (tell Conductor "Merge done")
+12. Git commit — run in terminal:
+    git add workspace/src/ brain/ workspace/tests/ workspace/iterations/I[N]/
+    git commit -m "I[N]: [iteration title] — PASS"
+    git tag I[N]-complete
+    → This creates a recovery checkpoint. If any future merge breaks something,
+      git checkout I[N]-complete restores the last known good state.
+    → If git is not set up: git init → git add -A → git commit -m "I[N]: [title] — PASS" → git tag I[N]-complete
+13. Return to Workflow 03 for next iteration (tell Conductor "Merge done")
