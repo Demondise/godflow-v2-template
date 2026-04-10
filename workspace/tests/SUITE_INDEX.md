@@ -5,7 +5,12 @@
 
 | Test File | Module | Type | Iteration | Flow Covered | Mock Level | Status |
 |---|---|---|---|---|---|---|
-| [none yet — will be populated after I1 merge] | — | — | — | — | — | — |
+| functional/extension.csp.test.ts | extension.ts | Functional | I1 | CSP nonce threading in `getWebviewContent` — CSP meta contains `nonce-`, matching `<script nonce>` attribute, no `unsafe-inline`/`unsafe-eval`, `style.css` link present | HIGH (mocks `vscode` module) | ACTIVE |
+| functional/formatAgentPreview.test.ts | webview/App.tsx | Functional | I1 | `formatAgentPreview` pure-function output for empty, partial, and full form states (strict markdown format) | NONE | ACTIVE |
+| functional/static.labels.test.ts | webview/App.tsx, webview/constants.ts | Functional | I1 | Static analysis — no hardcoded English label strings in JSX; all labels sourced from constants.ts | NONE | ACTIVE |
+| functional/static.types.test.ts | src/**/*.ts, *.tsx | Functional | I1 | Static analysis — no `: any`, `as any`, or `@ts-ignore` in source files | NONE | ACTIVE |
+| integration/app.form.integration.test.tsx | webview/App.tsx | Integration | I1 | React form render, three-field input, live preview update on change, `<pre>` element, XSS-safe text rendering | LOW (jsdom + React Testing Library) | ACTIVE |
+| e2e/agent-builder.open.e2e.test.ts | extension.ts | E2E | I1 | `agentBuilder.open` command registers and opens WebviewPanel in real VS Code instance | NONE | ACTIVE |
 
 Test types: Functional / Integration / E2E
 Mock Level: NONE / LOW / HIGH (HIGH = test mocks most dependencies — Release Validator flags as WARNING)
